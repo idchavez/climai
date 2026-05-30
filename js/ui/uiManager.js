@@ -2,6 +2,32 @@
 
 import { WEATHER_CODES } from '../constants/weatherCodes.js';
 
+/**
+ * Renderiza la información meteorológica de una ciudad en la interfaz de usuario.
+ *
+ * Actualiza los elementos visuales con el nombre de la ciudad, país,
+ * temperatura actual y detalles climáticos como humedad y velocidad del viento.
+ * También controla la visibilidad de los contenedores de clima, carga y errores.
+ *
+ * @param {Object} elementos - Referencias a los elementos del DOM utilizados por la interfaz.
+ * @param {HTMLElement} elementos.cityNameDiv - Contenedor del nombre de la ciudad.
+ * @param {HTMLElement} elementos.temperatureDiv - Contenedor de la temperatura.
+ * @param {HTMLElement} elementos.detailsDiv - Contenedor de los detalles climáticos.
+ * @param {HTMLElement} elementos.weatherContainer - Contenedor principal del clima.
+ * @param {HTMLElement} elementos.loadingDiv - Contenedor de carga.
+ * @param {HTMLElement} elementos.errorDiv - Contenedor de errores.
+ * @param {HTMLElement} elementos.forecastContainer - Contenedor del pronóstico.
+ * @param {Object} coordenadas - Información geográfica de la ciudad.
+ * @param {string} coordenadas.name - Nombre de la ciudad.
+ * @param {string} coordenadas.country - Código o nombre del país.
+ * @param {Object} datosTiempo - Datos meteorológicos obtenidos desde la API.
+ * @param {number} datosTiempo.temperature_2m - Temperatura actual en grados Celsius.
+ * @param {number} datosTiempo.relative_humidity_2m - Humedad relativa en porcentaje.
+ * @param {number} datosTiempo.wind_speed_10m - Velocidad del viento en km/h.
+ * @param {number} datosTiempo.weather_code - Código meteorológico utilizado para determinar la descripción del clima.
+ *
+ * @returns {void}
+ */
 export function mostrarClima(
     elementos,
     coordenadas,
@@ -41,6 +67,18 @@ export function mostrarClima(
     errorDiv.style.display = 'none';
 }
 
+/**
+ * Muestra un mensaje de error en la interfaz y oculta los elementos
+ * relacionados con el clima y la carga.
+ *
+ * @param {Object} elementos - Referencias a los elementos del DOM utilizados por la interfaz.
+ * @param {HTMLElement} elementos.errorDiv - Contenedor donde se mostrará el mensaje de error.
+ * @param {HTMLElement} elementos.weatherContainer - Contenedor principal del clima.
+ * @param {HTMLElement} elementos.loadingDiv - Contenedor de carga.
+ * @param {string} mensaje - Mensaje de error que se mostrará al usuario.
+ *
+ * @returns {void}
+ */
 export function mostrarError(
     elementos,
     mensaje
@@ -59,6 +97,17 @@ export function mostrarError(
         'none';
 }
 
+/**
+ * Muestra el indicador de carga mientras se realiza una consulta
+ * y oculta los mensajes de error y la información climática.
+ *
+ * @param {Object} elementos - Referencias a los elementos del DOM utilizados por la interfaz.
+ * @param {HTMLElement} elementos.loadingDiv - Contenedor del indicador de carga.
+ * @param {HTMLElement} elementos.errorDiv - Contenedor de errores.
+ * @param {HTMLElement} elementos.weatherContainer - Contenedor principal del clima.
+ *
+ * @returns {void}
+ */
 export function mostrarCargando(
     elementos
 ) {
@@ -73,6 +122,19 @@ export function mostrarCargando(
         'none';
 }
 
+/**
+ * Renderiza el pronóstico meteorológico de los próximos días
+ * dentro del contenedor correspondiente de la interfaz.
+ *
+ * @param {Object} elementos - Referencias a elementos del DOM.
+ * @param {HTMLElement} elementos.forecastContainer - Contenedor del pronóstico.
+ * @param {Object} pronostico - Datos diarios obtenidos desde la API.
+ *
+ * @returns {void}
+ *
+ * @example
+ * mostrarPronostico(elementos, pronostico);
+ */
 export function mostrarPronostico(
     elementos,
     pronostico

@@ -31,6 +31,28 @@ elementos.cityInput.addEventListener(
     }
 );
 
+
+/**
+ * Obtiene y muestra la información climática y el pronóstico de una ciudad.
+ *
+ * El flujo de ejecución es el siguiente:
+ * 1. Valida que el usuario haya ingresado una ciudad.
+ * 2. Muestra el indicador de carga y deshabilita el botón de búsqueda.
+ * 3. Verifica si existe información almacenada en caché.
+ * 4. Si existe caché, utiliza los datos almacenados para evitar solicitudes innecesarias.
+ * 5. Si no existe caché, consulta las APIs de geocodificación, clima actual y pronóstico.
+ * 6. Guarda los datos obtenidos en caché para futuras consultas.
+ * 7. Actualiza la interfaz con la información climática y el pronóstico.
+ * 8. Maneja errores mostrando un mensaje amigable al usuario.
+ * 9. Reactiva el botón de búsqueda al finalizar la operación.
+ *
+ * @async
+ * @function buscarClima
+ * @returns {Promise<void>} Promesa que se resuelve cuando la búsqueda y actualización de la interfaz han finalizado.
+ *
+ * @throws {Error} Si ocurre un problema al obtener las coordenadas,
+ * los datos meteorológicos o el pronóstico desde las APIs externas.
+ */
 async function buscarClima() {
 
     const ciudad = elementos.cityInput.value.trim();
